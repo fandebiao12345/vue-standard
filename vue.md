@@ -110,3 +110,73 @@ export default {
     }
 }
 ```
+### 2.父组件传值给子组件时如果是多单词变量，以烤串格式传递参数，子组件以驼峰式命名定义变量
+##### 例
+```HTML
+//父组件
+<template>
+    <div>
+        <child-item :child-data="testData"></child-item>
+    </div>
+</template>
+<script>
+import ChildItem from './ChildItem'
+export default {
+    data(){
+        return {
+            testData:''//传递给子组件的数据
+        }
+    }
+}
+</script>
+```
+```HTML
+//子组件
+<template>
+    <div>
+    </div>
+</template>
+<script>
+export default {
+    props: {
+        childData:{//子组件data
+            type:String,
+            default:'name'
+        }
+    }
+}
+</script>
+```
+
+## 三、methods的规范
+### 1.子组件自定义暴露给父组件事件以on开头
+##### 例
+```html
+<!--子组件 -->
+<template>
+    <div @click="handleClickTest">
+    </div>
+</template>
+<script>
+export default {
+    methods:{
+        handleClickTest(){
+            this.$emit('on-test')//自定义暴露方法以on-开头，后面接方法描述
+        }
+    }
+}
+<!--父组件 -->
+<template>
+    <div>
+        <child-item @on-test="onTest"></child-item>
+    </div>
+</template>
+<script>
+export default {
+    methods:{
+        onTest(){
+            
+        }
+    }
+}
+```
