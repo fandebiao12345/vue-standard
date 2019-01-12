@@ -165,6 +165,7 @@ export default {
         }
     }
 }
+</script>
 <!--父组件 -->
 <template>
     <div>
@@ -179,4 +180,94 @@ export default {
         }
     }
 }
+</script>
+```
+### 2.默认事件命名以handle+事件类型+描述
+##### 例
+```HTML
+
+    <div id="app">
+        <button @click="handleClickTest">按钮</button>
+        <select @change="handleChangeTest">
+            <option>1</option>
+        </select>
+    </div>
+
+```
+### 3.初始化调用接口渲染的事件默认定义getInit()（或根据实际情况定义）
+##### 例
+```html
+<template>
+    <div>
+        
+    </div>
+</template>
+<script>
+export default {
+    methods:{
+        //初始化方法
+       async getInit(){
+           let res = await get();//get()为用户封装好的接口方法
+       }
+    },
+    created(){
+        this.getInit()
+    }
+}
+</script>
+```
+
+## 四、组件规范
+### 1.组件头需有注释声明，声明组件描述
+##### 例
+```html
+<!--
+ * @Description: 组件描述
+ * @Author: you name
+ * @Date: 2019-01-08 20:49:08
+ * @LastEditors:  you name
+ * @LastEditTime: 2019-01-12 12:23:53
+ -->
+<template>
+    <div>
+
+    </div>
+</template>
+<script>
+export default {
+    data () {
+        return {
+            
+        }
+    }
+}
+</script>
+<style lang="less" scoped>
+
+</style>
+```
+### 2.组件命名使用驼峰式(首字母大写，除根组件APP外)，如单词过长可使用简写
+##### 例
+```
+<template>
+    <div>
+        <child-item></child-item>
+    </div>
+</template>
+<script>
+import ChildItem from './components/ChildItem.vue'//文件夹为小写，组件名为驼峰式，首字母也大写
+export default {
+    data () {
+        return {
+            
+        }
+    },
+     components: {
+        ChildItem
+    }
+}
+</script>
+<style lang="less" scoped>
+
+</style>
 ```
