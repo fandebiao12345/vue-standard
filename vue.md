@@ -271,3 +271,28 @@ export default {
 
 </style>
 ```
+### 3.引用组件时 再html中 不能使用驼峰式，需要使用全小写烤串式 不得出现大写字母。
+##### 例
+```
+<template>
+    <div>
+        <child-item></child-item><!-- 全小写，烤串格式 -->
+    </div>
+</template>
+<script>
+import ChildItem from './components/ChildItem.vue'
+export default {
+    data () {
+        return {
+            
+        }
+    },
+     components: {
+        ChildItem
+    }
+}
+</script>
+<style lang="less" scoped>
+
+</style>
+```
